@@ -3,6 +3,7 @@ import App from "./App";
 import Instructions from "./components/Instructions";
 import ErrorPage from "../frontend/components/ErrorPage";
 import LeaderBoard from "./components/LeaderBoard";
+import Game from "./components/Game";
 
 const routes = [
   {
@@ -17,6 +18,10 @@ const routes = [
       {
         path: "leaderboard",
         element: <LeaderBoard />,
+      },
+      {
+        path: "game",
+        element: <Game />,
       },
     ],
   },
