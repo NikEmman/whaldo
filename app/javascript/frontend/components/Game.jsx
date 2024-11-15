@@ -10,10 +10,10 @@ export default function Game() {
         </div>
         <div className="image">This is where image is rendered</div>
       </main>
-      <sidebar>
-        <h3>This is sidebar content</h3>
+      <section>
+        <h3>This is section content</h3>
         <button>Sample button</button>
-      </sidebar>
+      </section>
     </div>
   );
 }

@@ -25,13 +25,15 @@ export default function LeaderBoard() {
           </tr>
         </tbody>
       </table>
+
+      <p>latest attempt</p>
       <table>
-        <thead>
-          <b>Latest attempt</b>
-        </thead>
+        <thead></thead>
         <tbody>
-          <td>Luke Bean</td>
-          <td>12.01</td>
+          <tr>
+            <td>Luke Bean</td>
+            <td>12.01</td>
+          </tr>
         </tbody>
       </table>
     </>
