@@ -1,5 +1,8 @@
+import React from "react";
 import App from "./App";
 import Instructions from "./components/Instructions";
+import ErrorPage from "../frontend/components/ErrorPage";
+import LeaderBoard from "./components/LeaderBoard";
 
 const routes = [
   {
@@ -10,6 +13,10 @@ const routes = [
       {
         path: "",
         element: <Instructions />,
+      },
+      {
+        path: "leaderboard",
+        element: <LeaderBoard />,
       },
     ],
   },
