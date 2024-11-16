@@ -8,3 +8,9 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+.gameImage {
+  width: 100vw;
+}
+.gameImage img {
+  width: 100%;
+}
