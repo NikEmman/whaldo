@@ -1,21 +1,31 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { GameContext } from "./GameContext";
 
 export default function Game() {
+  const [timer, setTimer] = useState(0);
+  const { difficulty } = (useContext = { GameContext });
+
+  const startTimer = () => {
+    //TBI
+  };
+
+  useEffect(() => {
+    startTimer();
+  }, []);
+
   return (
     <div className="game">
       <main>
         <div className="gameNav">
-          <img src="/images/waldo_sprite.jpg" alt="waldo sprite" />
           <div className="timer">10:12:07</div>
         </div>
         <div className="gameImage">
-          <img src="/images/easy.jpg" alt="Easy Image" />
+          <img
+            src={`/images/${difficulty}.jpg`}
+            alt="Image where Waldo is located"
+          />
         </div>
       </main>
-      <section>
-        <h3>This is section content</h3>
-        <button>Sample button</button>
-      </section>
     </div>
   );
 }
