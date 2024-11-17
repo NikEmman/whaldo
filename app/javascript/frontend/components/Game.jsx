@@ -1,23 +1,27 @@
 import React, { useState, useEffect, useContext } from "react";
 import { GameContext } from "./GameContext";
+import Timer from "./Timer";
 
 export default function Game() {
-  const [timer, setTimer] = useState(0);
-  const { difficulty } = (useContext = { GameContext });
+  const [stopTimer, setStopTimer] = useState(false);
+  const [time, setTime] = useState(0);
+  const { difficulty } = useContext(GameContext);
+  const [coords, setCoords] = useState([0, 0]);
 
-  const startTimer = () => {
-    //TBI
+  const handleTimeUpdate = (currentTime) => {
+    setTime(currentTime);
   };
 
   useEffect(() => {
-    startTimer();
-  }, []);
+    //fetchWaldoLocation(difficulty);
+    // setCoords(fetchedCoords)
+  }, [difficulty]);
 
   return (
     <div className="game">
       <main>
         <div className="gameNav">
-          <div className="timer">10:12:07</div>
+          <Timer stopTimer={stopTimer} onTimeUpdate={handleTimeUpdate} />
         </div>
         <div className="gameImage">
           <img

@@ -5,17 +5,13 @@ import { Outlet } from "react-router-dom";
 
 export default function App() {
   const [difficulty, setDifficulty] = useState("easy");
-  const [time, setTime] = useState(0);
 
   const onSelectDifficulty = (selection) => setDifficulty(selection);
-  const getTime = (timeDone) => setTime(timeDone);
   return (
     <>
       <GameContext.Provider
         value={{
           onSelectDifficulty,
-          time: time,
-          getTime,
           difficulty: difficulty,
         }}
       >
