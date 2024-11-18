@@ -36,10 +36,8 @@ export default function Instructions() {
         </ul>
       </div>
       <div className="gameInit">
-        <select name="difficulty" id="difficulty">
-          <option value="easy" selected>
-            Easy
-          </option>
+        <select name="difficulty" id="difficulty" defaultValue={"easy"}>
+          <option value="easy">Easy</option>
           <option value="mid">Medium</option>
           <option value="hard">Hard</option>
         </select>

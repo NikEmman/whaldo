@@ -1,9 +1,19 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
 import { parseTime } from "../utils";
 
-export default function Timer({ stopTimer, onTimeUpdate }) {
+const Timer = forwardRef(({ stopTimer }, ref) => {
   const [time, setTime] = useState(0);
+  const timeRef = useRef(time);
+
+  useImperativeHandle(ref, () => ({
+    getCurrentTime: () => timeRef.current,
+  }));
 
   useEffect(() => {
     let interval;
@@ -11,14 +21,14 @@ export default function Timer({ stopTimer, onTimeUpdate }) {
       interval = setInterval(() => {
         setTime((prevTime) => {
           const newTime = prevTime + 100;
-          onTimeUpdate(newTime);
+          timeRef.current = newTime;
           return newTime;
         });
       }, 100);
     }
 
     return () => clearInterval(interval);
-  }, [stopTimer, onTimeUpdate]);
+  }, [stopTimer]);
 
   const parsedTime = parseTime(time);
 
@@ -27,9 +37,6 @@ export default function Timer({ stopTimer, onTimeUpdate }) {
       {`${parsedTime.hours}:${parsedTime.minutes}:${parsedTime.seconds}.${parsedTime.tenthsOfSecond}`}
     </div>
   );
-}
+});
 
-Timer.propTypes = {
-  stopTimer: PropTypes.bool.isRequired,
-  onTimeUpdate: PropTypes.func.isRequired,
-};
+export default Timer;
