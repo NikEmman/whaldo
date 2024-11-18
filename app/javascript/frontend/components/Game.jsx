@@ -32,7 +32,7 @@ export default function Game() {
       Math.round(((event.clientX - rect.left) / rect.width) * 100 * 100) / 100;
     const relativeY =
       Math.round(((event.clientY - rect.top) / rect.height) * 100 * 100) / 100;
-    // console.log(`x:${relativeX} , y:${relativeY}`);
+    console.log(`x:${relativeX} , y:${relativeY}`);
 
     setCoords([relativeX, relativeY]);
   };
