@@ -10,7 +10,16 @@
  */
 .gameImage {
   width: 100vw;
+  position: relative;
 }
 .gameImage img {
   width: 100%;
+}
+.frame {
+  width: 5%;
+  height: 9%;
+  border: 5px solid orange;
+
+  position: absolute;
+  top: 0;
 }

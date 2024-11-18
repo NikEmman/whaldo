@@ -7,7 +7,7 @@ export default function Game() {
   const [time, setTime] = useState(0);
   const { difficulty } = useContext(GameContext);
   const [coords, setCoords] = useState([0, 0]);
-  const [showFrame, setShowFrame] = useState(false);
+  const [frameStatus, setFrameStatus] = useState("visible");
   const timerRef = useRef();
 
   const handleCheckTime = () => {
@@ -33,6 +33,11 @@ export default function Game() {
     setCoords([relativeX, relativeY]);
   };
 
+  const frameStyle = {
+    display: frameStatus,
+    top: `${coords[1] - 4.5}%`,
+    left: `${coords[0] - 2.5}%`,
+  };
   return (
     <div className="game">
       <main>
@@ -45,6 +50,7 @@ export default function Game() {
             src={`/images/${difficulty}.jpg`}
             alt="Image where Waldo is located"
           />
+          <div className="frame" style={frameStyle}></div>
         </div>
         <button onClick={handleCheckTime}>Check Time</button>
       </main>
