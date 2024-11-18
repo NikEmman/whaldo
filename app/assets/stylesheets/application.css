@@ -23,3 +23,17 @@
   position: absolute;
   top: 0;
 }
+.checkWaldo {
+  position: absolute;
+}
+.error {
+  color: red;
+  background-color: pink;
+  width: fit-content;
+  padding: 0.5em;
+}
+.gameNav {
+  display: flex;
+  align-items: center;
+  gap: 10em;
+}
