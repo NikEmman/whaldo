@@ -12,7 +12,7 @@ export default function App() {
       <GameContext.Provider
         value={{
           onSelectDifficulty,
-          difficulty: difficulty,
+          difficulty,
         }}
       >
         <NavBar />

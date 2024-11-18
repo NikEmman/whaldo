@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { GameContext } from "./GameContext";
 
 export default function Instructions() {
+  const { onSelectDifficulty, difficulty } = useContext(GameContext);
+
+  const handleChange = (e) => {
+    onSelectDifficulty(e.target.value);
+  };
   return (
     <>
       <h1> Welcome to Where's Waldo! </h1>
@@ -36,7 +42,12 @@ export default function Instructions() {
         </ul>
       </div>
       <div className="gameInit">
-        <select name="difficulty" id="difficulty" defaultValue={"easy"}>
+        <select
+          name="difficulty"
+          id="difficulty"
+          value={difficulty}
+          onChange={handleChange}
+        >
           <option value="easy">Easy</option>
           <option value="mid">Medium</option>
           <option value="hard">Hard</option>
