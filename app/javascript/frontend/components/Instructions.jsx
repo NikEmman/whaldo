@@ -29,6 +29,11 @@ export default function Instructions() {
           <li>
             A square will be placed at that spot, and if Waldo is indeed there,
             you win!
+            <img
+              className="example"
+              src="/images/example.jpg"
+              alt="finding waldo example"
+            />
           </li>
           <li>
             The timer will stop, and you may insert your name to the leader
