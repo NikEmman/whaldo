@@ -8,6 +8,9 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+.game {
+  position: relative;
+}
 .gameImage {
   width: 100vw;
   position: relative;
@@ -36,4 +39,15 @@
   display: flex;
   align-items: center;
   gap: 10em;
+}
+.modal {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  background-color: white;
+  padding: 2em;
+  filter: none;
+  z-index: 1;
+  pointer-events: auto;
+  border-radius: 5px;
 }

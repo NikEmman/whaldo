@@ -4,7 +4,6 @@ import Timer from "./Timer";
 import { parseTime, formatTime } from "../utils";
 
 export default function Game() {
-  //stopTimer maybe not needed, pass a getTime to Timer and who cares?
   const [stopTimer, setStopTimer] = useState(false);
   const [time, setTime] = useState(0);
   const { difficulty } = useContext(GameContext);
@@ -54,6 +53,7 @@ export default function Game() {
     if (correctGuess(coords, solution)) {
       getTime();
       setDisplayForm(true);
+      setStopTimer(true);
     } else {
       setError(true);
     }
@@ -70,10 +70,15 @@ export default function Game() {
     top: `${coords[1]}%`,
     left: `${coords[0] + 4.5}%`,
   };
-
+  const gameStyle = displayForm
+    ? {
+        filter: "blur(10px)",
+        pointerEvents: "none",
+      }
+    : {};
   return (
-    <div className="game">
-      {!displayForm ? (
+    <>
+      <div className="game" style={gameStyle}>
         <main>
           <div className="gameNav">
             <Timer stopTimer={stopTimer} ref={timerRef} />
@@ -95,10 +100,11 @@ export default function Game() {
             </button>
           </div>
         </main>
-      ) : (
-        <>
+      </div>
+      {displayForm && (
+        <div className="modal">
           <h1>
-            Your time on {difficulty} difficulty was:{" "}
+            Your time on {difficulty} difficulty was:
             {formatTime(parseTime(time))}
           </h1>
           <form action="/">
@@ -106,8 +112,8 @@ export default function Game() {
             <input type="text" name="name" id="name" />
             <button type="submit">Submit!</button>
           </form>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 }
