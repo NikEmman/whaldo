@@ -30,7 +30,7 @@ export default function Game() {
     setFrameDisplay(true);
     const img = event.target;
     const rect = img.getBoundingClientRect();
-
+    setError(false);
     // Calculate the relative coordinates
     const relativeX =
       Math.round(((event.clientX - rect.left) / rect.width) * 100 * 100) / 100;
@@ -103,13 +103,14 @@ export default function Game() {
       </div>
       {displayForm && (
         <div className="modal">
-          <h1>
+          <h1>You found him!</h1>
+          <p>
             Your time on {difficulty} difficulty was:
             {formatTime(parseTime(time))}
-          </h1>
-          <form action="/">
+          </p>
+          <form action="/" method="POST">
             <label htmlFor="name">Enter your name</label>
-            <input type="text" name="name" id="name" />
+            <input type="text" name="name" id="name" placeholder="John Doe" />
             <button type="submit">Submit!</button>
           </form>
         </div>

@@ -8,6 +8,10 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+* {
+  margin: 0;
+  padding: 0;
+}
 .game {
   position: relative;
 }
@@ -35,10 +39,16 @@
   width: fit-content;
   padding: 0.5em;
 }
+.timer {
+  border: 2px solid #333;
+  padding: 0.5em;
+}
 .gameNav {
   display: flex;
   align-items: center;
   gap: 10em;
+  height: 8vh;
+  padding-left: 2em;
 }
 .modal {
   position: absolute;
@@ -50,4 +60,95 @@
   z-index: 1;
   pointer-events: auto;
   border-radius: 5px;
+}
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #333;
+  height: 8vh;
+  align-items: center;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+a:hover,
+nav a:hover,
+button:hover {
+  background-color: #04aa6d;
+}
+a,
+button {
+  color: white;
+  text-decoration: none;
+  height: 5vh;
+  align-items: center;
+  padding-left: 1em;
+  padding-right: 1em;
+  background-color: #333;
+  display: flex;
+  align-items: center;
+}
+.instructions {
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.instructions h1 {
+  align-self: center;
+}
+.sprite {
+  height: 15vh;
+}
+.example {
+  height: 20vh;
+}
+ul {
+  display: flex;
+  flex-direction: column;
+}
+ul li {
+  min-height: 20vh;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+ul li::before {
+  content: "*";
+}
+.gameInit {
+  display: flex;
+  gap: 1em;
+}
+select {
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  padding-left: 1em;
+  padding-right: 1em;
+  font-size: inherit;
+}
+
+.easy {
+  background-color: #04aa6d;
+}
+.mid {
+  background-color: #c24802;
+}
+.hard {
+  background-color: #aa0404;
+}
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+  gap: 5em;
 }

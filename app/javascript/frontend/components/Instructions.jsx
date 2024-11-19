@@ -5,12 +5,14 @@ import { GameContext } from "./GameContext";
 export default function Instructions() {
   const { onSelectDifficulty, difficulty } = useContext(GameContext);
 
-  const handleChange = (e) => {
-    onSelectDifficulty(e.target.value);
+  const handleChange = (event) => {
+    const value = event.target.value;
+    onSelectDifficulty(value);
   };
   return (
-    <>
+    <div className="instructions">
       <h1> Welcome to Where's Waldo! </h1>
+      <hr />
       <div>
         <h3>How to play:</h3>
         <ul>
@@ -49,16 +51,23 @@ export default function Instructions() {
       <div className="gameInit">
         <select
           name="difficulty"
+          className={difficulty}
           id="difficulty"
           value={difficulty}
           onChange={handleChange}
         >
-          <option value="easy">Easy</option>
-          <option value="mid">Medium</option>
-          <option value="hard">Hard</option>
+          <option className="easy" value="easy">
+            Easy
+          </option>
+          <option className="mid" value="mid">
+            Medium
+          </option>
+          <option className="hard" value="hard">
+            Hard
+          </option>
         </select>
         <Link to="game">Start Game</Link>
       </div>
-    </>
+    </div>
   );
 }

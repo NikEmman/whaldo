@@ -2,7 +2,7 @@ import React from "react";
 
 export default function LeaderBoard() {
   return (
-    <>
+    <div className="leaderboard">
       <table>
         <thead>
           <tr>
@@ -26,16 +26,23 @@ export default function LeaderBoard() {
         </tbody>
       </table>
 
-      <p>latest attempt</p>
-      <table>
-        <thead></thead>
-        <tbody>
-          <tr>
-            <td>Luke Bean</td>
-            <td>12.01</td>
-          </tr>
-        </tbody>
-      </table>
-    </>
+      <div>
+        <p>latest attempt</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Luke Bean</td>
+              <td>12.01</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 }
