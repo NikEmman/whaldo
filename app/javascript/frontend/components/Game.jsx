@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { GameContext } from "./GameContext";
 import Timer from "./Timer";
-import { parseTime } from "../utils";
+import { parseTime, formatTime } from "../utils";
 
 export default function Game() {
+  //stopTimer maybe not needed, pass a getTime to Timer and who cares?
   const [stopTimer, setStopTimer] = useState(false);
   const [time, setTime] = useState(0);
   const { difficulty } = useContext(GameContext);
@@ -95,14 +96,17 @@ export default function Game() {
           </div>
         </main>
       ) : (
-        <form action="/">
-          <p>
-            {/* Your time on {difficulty} difficulty was: {parseTime(time)} */}
-          </p>
-          <label htmlFor="name">Name</label>
-          <input type="text" name="name" id="name" />
-          <button type="submit">Submit!</button>
-        </form>
+        <>
+          <h1>
+            Your time on {difficulty} difficulty was:{" "}
+            {formatTime(parseTime(time))}
+          </h1>
+          <form action="/">
+            <label htmlFor="name">Enter your name</label>
+            <input type="text" name="name" id="name" />
+            <button type="submit">Submit!</button>
+          </form>
+        </>
       )}
     </div>
   );

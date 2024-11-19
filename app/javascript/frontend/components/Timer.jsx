@@ -5,7 +5,7 @@ import React, {
   forwardRef,
   useImperativeHandle,
 } from "react";
-import { parseTime } from "../utils";
+import { parseTime, formatTime } from "../utils";
 
 const Timer = forwardRef(({ stopTimer }, ref) => {
   const [time, setTime] = useState(0);
@@ -31,12 +31,9 @@ const Timer = forwardRef(({ stopTimer }, ref) => {
   }, [stopTimer]);
 
   const parsedTime = parseTime(time);
+  const formattedTime = formatTime(parsedTime);
 
-  return (
-    <div className="timer">
-      {`${parsedTime.hours}:${parsedTime.minutes}:${parsedTime.seconds}.${parsedTime.tenthsOfSecond}`}
-    </div>
-  );
+  return <div className="timer">{formattedTime}</div>;
 });
 
 export default Timer;

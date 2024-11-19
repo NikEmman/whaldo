@@ -17,3 +17,6 @@ function padNumber(number) {
   if (num.length < 2) num = "0" + num;
   return num;
 }
+export function formatTime(parsedTime) {
+  return `${parsedTime.hours}:${parsedTime.minutes}:${parsedTime.seconds}.${parsedTime.tenthsOfSecond}`;
+}
