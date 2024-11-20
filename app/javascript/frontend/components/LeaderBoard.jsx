@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GameContext } from "./GameContext";
 
 export default function LeaderBoard() {
+  const { difficulty } = useContext(GameContext);
+
+  function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
     <div className="leaderboard">
+      <h1>Leaderboard on {capitalize(difficulty)}</h1>
       <table>
         <thead>
           <tr>
@@ -27,7 +35,7 @@ export default function LeaderBoard() {
       </table>
 
       <div>
-        <p>latest attempt</p>
+        <h3>latest attempt</h3>
         <table>
           <thead>
             <tr>

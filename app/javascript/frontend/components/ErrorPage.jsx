@@ -4,7 +4,10 @@ import React from "react";
 const ErrorPage = () => {
   return (
     <div className="errorPage">
-      <h1>Oh no, this route doesn&apos;t exist!</h1>
+      <div className="container">
+        <h1>Oh no, can&apos;t find this page!</h1>
+        <img src="/images/glass.svg" alt="magnifying glass" />
+      </div>
       <Link to="/">
         You can go back to the home page by clicking here, though!
       </Link>
