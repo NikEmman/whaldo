@@ -5,7 +5,7 @@ import React, {
   forwardRef,
   useImperativeHandle,
 } from "react";
-import { parseTime, formatTime } from "../utils";
+import { formatTime } from "../utils";
 
 const Timer = forwardRef(({ stopTimer }, ref) => {
   const [time, setTime] = useState(0);
@@ -30,8 +30,7 @@ const Timer = forwardRef(({ stopTimer }, ref) => {
     return () => clearInterval(interval);
   }, [stopTimer]);
 
-  const parsedTime = parseTime(time);
-  const formattedTime = formatTime(parsedTime);
+  const formattedTime = formatTime(time);
 
   return <div className="timer">{formattedTime}</div>;
 });

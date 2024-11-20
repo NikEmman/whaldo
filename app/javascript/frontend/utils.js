@@ -1,4 +1,4 @@
-export const parseTime = (milliseconds) => {
+const parseTime = (milliseconds) => {
   const hours = Math.floor(milliseconds / 3600000);
   const minutes = Math.floor((milliseconds % 3600000) / 60000);
   const seconds = Math.floor((milliseconds % 60000) / 1000);
@@ -17,6 +17,7 @@ function padNumber(number) {
   if (num.length < 2) num = "0" + num;
   return num;
 }
-export function formatTime(parsedTime) {
+export function formatTime(time) {
+  const parsedTime = parseTime(time);
   return `${parsedTime.hours}:${parsedTime.minutes}:${parsedTime.seconds}.${parsedTime.tenthsOfSecond}`;
 }

@@ -1,23 +1,23 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { GameContext } from "./GameContext";
 import Timer from "./Timer";
-import { parseTime, formatTime } from "../utils";
+import { formatTime } from "../utils";
 
 export default function Game() {
   const [stopTimer, setStopTimer] = useState(false);
-  const [time, setTime] = useState(0);
-  const { difficulty } = useContext(GameContext);
+  // const [time, setTime] = useState(0);
+  const { difficulty, getTime } = useContext(GameContext);
   const [coords, setCoords] = useState([0, 0]);
   const [frameDisplay, setFrameDisplay] = useState(false);
-  const timerRef = useRef();
+  // const timerRef = useRef();
   const [error, setError] = useState(false);
   const [displayForm, setDisplayForm] = useState(false);
   const [solution, setSolution] = useState([62, 37.8]);
 
-  const getTime = () => {
-    const currentTime = timerRef.current.getCurrentTime();
-    setTime(currentTime);
-  };
+  // const getTime = () => {
+  //   const currentTime = timerRef.current.getCurrentTime();
+  //   setTime(currentTime);
+  // };
 
   useEffect(() => {
     //fetchWaldoLocation(difficulty);
@@ -106,7 +106,7 @@ export default function Game() {
           <h1>You found him!</h1>
           <p>
             Your time on {difficulty} difficulty was:
-            {formatTime(parseTime(time))}
+            {formatTime(time)}
           </p>
           <form action="/" method="POST">
             <label htmlFor="name">Enter your name</label>
