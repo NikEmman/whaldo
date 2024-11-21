@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_21_100644) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_21_144302) do
+  create_table "leaderboards", force: :cascade do |t|
+    t.string "name"
+    t.string "difficulty"
+    t.integer "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "solutions", force: :cascade do |t|
     t.string "difficulty"
     t.float "x"

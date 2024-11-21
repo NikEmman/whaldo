@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { GameContext } from "./GameContext";
 import Timer from "./Timer";
-import { formatTime, capitalize } from "../utils";
+import { formatTime } from "../utils";
 
 export default function Game() {
   const [stopTimer, setStopTimer] = useState(false);
@@ -12,7 +12,7 @@ export default function Game() {
   const [frameDisplay, setFrameDisplay] = useState(false);
   const timerRef = useRef();
   const [error, setError] = useState(false);
-  const [displayForm, setDisplayForm] = useState(true);
+  const [displayForm, setDisplayForm] = useState(false);
   const [solution, setSolution] = useState([]);
 
   const getTimer = () => {
@@ -61,10 +61,18 @@ export default function Game() {
   const leaderBoardRouter = () => {
     navigate("/leaderboard");
   };
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     const name = e.target.elements.name.value || "Anonymous";
+    const difficulty = e.target.elements.difficulty.value;
+    const time = e.target.elements.time.value;
+    const allInputValues = { name: name, difficulty: difficulty, time: time };
     getName(name);
+    let res = await fetch("http://localhost:3000/api/leaderboard", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(allInputValues),
+    });
     leaderBoardRouter();
   };
   const onCheckWaldoClick = () => {
@@ -127,12 +135,13 @@ export default function Game() {
             Your time was:
             {" " + formatTime(time)}
           </p>
-          <form action="/" method="POST" onSubmit={handleFormSubmit}>
+          <form action="/" onSubmit={handleFormSubmit}>
             <div>
               <label htmlFor="name">Name</label>
               <input type="text" name="name" id="name" placeholder="John Doe" />
             </div>
             <input type="hidden" name="difficulty" value={difficulty} />
+            <input type="hidden" name="time" value={time} />
             <button type="submit">Submit!</button>
           </form>
         </div>

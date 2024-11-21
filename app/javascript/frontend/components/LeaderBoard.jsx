@@ -8,11 +8,15 @@ export default function LeaderBoard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // fetch("/localhost/api/leaderboard")
-    //   .then((response) => response.json())
-    //   .then((data) => setData(data))
-    //   .catch((error) => console.log(error));
-    // setLoading(false);
+    const url = `http://localhost:3000/api/leaderboard/${difficulty}`;
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data);
+        console.log(data);
+        data && setLoading(false);
+      })
+      .catch((error) => console.log(error));
   }, []);
 
   const tableRows = data ? (
