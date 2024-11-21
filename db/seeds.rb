@@ -7,3 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+Solution.create(difficulty: "mid", x: 28.32, y: 36.84)
+Solution.create(difficulty: "hard", x: 62.01, y: 37.78)
+Solution.create(difficulty: "hard", x: 62.01, y: 37.78)

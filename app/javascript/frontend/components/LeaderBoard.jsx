@@ -17,7 +17,7 @@ export default function LeaderBoard() {
     //   .catch((error) => console.log(error));
     // setLoading(false);
   }, []);
-  console.log(`time: ${time}, dif: ${difficulty}, name:${name}`);
+
   const tableRows = data ? (
     data.map((person) => {
       return (
@@ -39,7 +39,7 @@ export default function LeaderBoard() {
       {loading ? (
         <>
           <h1>Loading...</h1>
-          <div class="loader"></div>
+          <div className="loader"></div>
         </>
       ) : (
         <>

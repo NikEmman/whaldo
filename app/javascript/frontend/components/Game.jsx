@@ -13,7 +13,7 @@ export default function Game() {
   const timerRef = useRef();
   const [error, setError] = useState(false);
   const [displayForm, setDisplayForm] = useState(false);
-  const [solution, setSolution] = useState([62, 37.8]);
+  const [solution, setSolution] = useState([]);
 
   const getTimer = () => {
     const currentTime = timerRef.current.getCurrentTime();
@@ -22,8 +22,16 @@ export default function Game() {
   };
 
   useEffect(() => {
-    //fetchWaldoLocation(difficulty);
-    // setSolution(fetchedCoords)
+    const url = `http://localhost:3000/api/solutions/${difficulty}`;
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.length > 0) {
+          console.log(data[0]);
+          setSolution([data[0].x, data[0].y]);
+        }
+      })
+      .catch((error) => console.error("Error fetching data", error));
   }, [difficulty]);
 
   const errorMsg = error && <p className="error">Nope! Waldo is not here.</p>;
@@ -38,7 +46,7 @@ export default function Game() {
       Math.round(((event.clientX - rect.left) / rect.width) * 100 * 100) / 100;
     const relativeY =
       Math.round(((event.clientY - rect.top) / rect.height) * 100 * 100) / 100;
-    // console.log(`x:${relativeX} , y:${relativeY}`);
+    console.log(`x:${relativeX} , y:${relativeY}`);
 
     setCoords([relativeX, relativeY]);
   };

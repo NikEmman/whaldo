@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   root to: "homepage#index"
+  namespace :api do
+    get "solutions/easy", to: "solutions#easy"
+    get "solutions/mid", to: "solutions#mid"
+    get "solutions/hard", to: "solutions#hard"
+  end
 
   # Specific routes for your app
   get "/leaderboard", to: "homepage#index"
