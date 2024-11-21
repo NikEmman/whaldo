@@ -1,15 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { GameContext } from "./GameContext";
-import { formatTime } from "../utils";
+import { formatTime, capitalize } from "../utils";
 
 export default function LeaderBoard() {
   const { difficulty, time, name } = useContext(GameContext);
   const [data, setData] = useState([{ id: 1, name: "John", time: 36000 }]);
   const [loading, setLoading] = useState(true);
 
-  function capitalize(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
   useEffect(() => {
     // fetch("/localhost/api/leaderboard")
     //   .then((response) => response.json())

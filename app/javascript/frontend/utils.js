@@ -21,3 +21,6 @@ export function formatTime(time) {
   const parsedTime = parseTime(time);
   return `${parsedTime.hours}:${parsedTime.minutes}:${parsedTime.seconds}.${parsedTime.tenthsOfSecond}`;
 }
+export function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { GameContext } from "./GameContext";
 import Timer from "./Timer";
-import { formatTime } from "../utils";
+import { formatTime, capitalize } from "../utils";
 
 export default function Game() {
   const [stopTimer, setStopTimer] = useState(false);
@@ -12,7 +12,7 @@ export default function Game() {
   const [frameDisplay, setFrameDisplay] = useState(false);
   const timerRef = useRef();
   const [error, setError] = useState(false);
-  const [displayForm, setDisplayForm] = useState(false);
+  const [displayForm, setDisplayForm] = useState(true);
   const [solution, setSolution] = useState([]);
 
   const getTimer = () => {
@@ -124,12 +124,15 @@ export default function Game() {
         <div className="modal">
           <h1>You found him!</h1>
           <p>
-            Your time on {difficulty} difficulty was:
-            {formatTime(time)}
+            Your time was:
+            {" " + formatTime(time)}
           </p>
           <form action="/" method="POST" onSubmit={handleFormSubmit}>
-            <label htmlFor="name">Enter your name</label>
-            <input type="text" name="name" id="name" placeholder="John Doe" />
+            <div>
+              <label htmlFor="name">Name</label>
+              <input type="text" name="name" id="name" placeholder="John Doe" />
+            </div>
+            <input type="hidden" name="difficulty" value={difficulty} />
             <button type="submit">Submit!</button>
           </form>
         </div>

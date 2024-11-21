@@ -91,6 +91,7 @@ button {
   padding-left: 1em;
   padding-right: 1em;
   background-color: #333;
+  border: none;
   display: flex;
   align-items: center;
 }
@@ -240,4 +241,23 @@ tbody tr:nth-child(even) {
   100% {
     transform: rotate(360deg);
   }
+}
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+form div {
+  display: flex;
+  gap: 0.5em;
+}
+form button {
+  align-self: center;
+  width: fit-content;
 }
