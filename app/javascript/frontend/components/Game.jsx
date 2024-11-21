@@ -23,7 +23,7 @@ export default function Game() {
 
   useEffect(() => {
     //fetchWaldoLocation(difficulty);
-    // setCoords(fetchedCoords)
+    // setSolution(fetchedCoords)
   }, [difficulty]);
 
   const errorMsg = error && <p className="error">Nope! Waldo is not here.</p>;
