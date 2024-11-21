@@ -3,7 +3,7 @@ import { GameContext } from "./GameContext";
 import { formatTime } from "../utils";
 
 export default function LeaderBoard() {
-  const { difficulty, time } = useContext(GameContext);
+  const { difficulty, time, name } = useContext(GameContext);
   const [data, setData] = useState([{ id: 1, name: "John", time: 36000 }]);
 
   function capitalize(string) {
@@ -15,7 +15,7 @@ export default function LeaderBoard() {
     //   .then((data) => setData(data))
     //   .catch((error) => console.log(error));
   }, []);
-
+  console.log(`time: ${time}, dif: ${difficulty}, name:${name}`);
   const tableRows = data ? (
     data.map((person) => {
       return (
@@ -43,24 +43,25 @@ export default function LeaderBoard() {
         </thead>
         <tbody>{tableRows}</tbody>
       </table>
-
-      <div>
-        <h3>Latest attempt</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>{formatTime(time)}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Luke Bean</td>
-              <td>12.01</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      {time !== 0 && (
+        <div>
+          <h3>Latest attempt</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Time (h:m:s:ms)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{name}</td>
+                <td>{formatTime(time)}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }

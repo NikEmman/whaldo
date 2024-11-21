@@ -1,23 +1,25 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { GameContext } from "./GameContext";
 import Timer from "./Timer";
 import { formatTime } from "../utils";
 
 export default function Game() {
   const [stopTimer, setStopTimer] = useState(false);
-  // const [time, setTime] = useState(0);
-  const { difficulty, getTime } = useContext(GameContext);
+  const [time, setTime] = useState(0);
+  const { difficulty, getTime, getName } = useContext(GameContext);
   const [coords, setCoords] = useState([0, 0]);
   const [frameDisplay, setFrameDisplay] = useState(false);
-  // const timerRef = useRef();
+  const timerRef = useRef();
   const [error, setError] = useState(false);
   const [displayForm, setDisplayForm] = useState(false);
   const [solution, setSolution] = useState([62, 37.8]);
 
-  // const getTime = () => {
-  //   const currentTime = timerRef.current.getCurrentTime();
-  //   setTime(currentTime);
-  // };
+  const getTimer = () => {
+    const currentTime = timerRef.current.getCurrentTime();
+    getTime(currentTime);
+    setTime(currentTime);
+  };
 
   useEffect(() => {
     //fetchWaldoLocation(difficulty);
@@ -36,7 +38,7 @@ export default function Game() {
       Math.round(((event.clientX - rect.left) / rect.width) * 100 * 100) / 100;
     const relativeY =
       Math.round(((event.clientY - rect.top) / rect.height) * 100 * 100) / 100;
-    console.log(`x:${relativeX} , y:${relativeY}`);
+    // console.log(`x:${relativeX} , y:${relativeY}`);
 
     setCoords([relativeX, relativeY]);
   };
@@ -47,11 +49,20 @@ export default function Game() {
       Math.abs(clickedCoords[1] - rightCoords[1]) <= 9
     );
   };
-
+  const navigate = useNavigate();
+  const leaderBoardRouter = () => {
+    navigate("/leaderboard");
+  };
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    const name = e.target.elements.name.value || "Anonymous";
+    getName(name);
+    leaderBoardRouter();
+  };
   const onCheckWaldoClick = () => {
     setFrameDisplay(false);
     if (correctGuess(coords, solution)) {
-      getTime();
+      getTimer();
       setDisplayForm(true);
       setStopTimer(true);
     } else {
@@ -108,7 +119,7 @@ export default function Game() {
             Your time on {difficulty} difficulty was:
             {formatTime(time)}
           </p>
-          <form action="/" method="POST">
+          <form action="/" method="POST" onSubmit={handleFormSubmit}>
             <label htmlFor="name">Enter your name</label>
             <input type="text" name="name" id="name" placeholder="John Doe" />
             <button type="submit">Submit!</button>
