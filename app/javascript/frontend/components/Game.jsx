@@ -27,7 +27,6 @@ export default function Game() {
       .then((response) => response.json())
       .then((data) => {
         if (data.length > 0) {
-          console.log(data[0]);
           setSolution([data[0].x, data[0].y]);
         }
       })
@@ -46,7 +45,6 @@ export default function Game() {
       Math.round(((event.clientX - rect.left) / rect.width) * 100 * 100) / 100;
     const relativeY =
       Math.round(((event.clientY - rect.top) / rect.height) * 100 * 100) / 100;
-    console.log(`x:${relativeX} , y:${relativeY}`);
 
     setCoords([relativeX, relativeY]);
   };
@@ -61,20 +59,53 @@ export default function Game() {
   const leaderBoardRouter = () => {
     navigate("/leaderboard");
   };
+  // const handleFormSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const name = e.target.elements.name.value || "Anonymous";
+  //   const difficulty = e.target.elements.difficulty.value;
+  //   const time = e.target.elements.time.value;
+  //   const allInputValues = { name: name, difficulty: difficulty, time: time };
+  //   getName(name);
+  //   let res = await fetch("http://localhost:3000/api/leaderboard", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(allInputValues),
+  //   });
+  //   leaderBoardRouter();
+  // };
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
     const name = e.target.elements.name.value || "Anonymous";
     const difficulty = e.target.elements.difficulty.value;
     const time = e.target.elements.time.value;
-    const allInputValues = { name: name, difficulty: difficulty, time: time };
+    const csrfToken = document
+      .querySelector('meta[name="csrf-token"]')
+      .getAttribute("content");
+    const allInputValues = {
+      leaderboard: { name: name, difficulty: difficulty, time: time },
+    };
     getName(name);
-    let res = await fetch("http://localhost:3000/api/leaderboard", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(allInputValues),
-    });
+
+    try {
+      let res = await fetch("http://localhost:3000/api/leaderboard", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(allInputValues),
+      });
+      if (res.ok) {
+        leaderBoardRouter();
+      } else {
+        console.error("Failed to submit:", res.statusText);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
     leaderBoardRouter();
   };
+
   const onCheckWaldoClick = () => {
     setFrameDisplay(false);
     if (correctGuess(coords, solution)) {
