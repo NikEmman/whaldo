@@ -16,7 +16,7 @@ module Api
       @leaderboard = Leaderboard.new(leaderboard_params)
 
       if @leaderboard.save
-        render json: @leaderboard, status: :created, location: @leaderboard
+        render json: @leaderboard, status: :created
       else
         render json: @leaderboard.errors, status: :unprocessable_entity
       end
