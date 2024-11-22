@@ -4,7 +4,7 @@ import { formatTime, capitalize } from "../utils";
 
 export default function LeaderBoard() {
   const { difficulty, time, name } = useContext(GameContext);
-  const [data, setData] = useState([{ id: 1, name: "John", time: 36000 }]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -13,27 +13,27 @@ export default function LeaderBoard() {
       .then((response) => response.json())
       .then((data) => {
         setData(data);
-        console.log(data);
         data && setLoading(false);
       })
       .catch((error) => console.log(error));
   }, []);
 
-  const tableRows = data ? (
-    data.map((person) => {
-      return (
-        <tr key={person.id}>
-          <td>{person.name}</td>
-          <td>{formatTime(person.time)}</td>
-        </tr>
-      );
-    })
-  ) : (
-    <tr>
-      <td>No data</td>
-      <td>No data</td>
-    </tr>
-  );
+  const tableRows =
+    data.length > 0 ? (
+      data.map((person) => {
+        return (
+          <tr key={person.id}>
+            <td>{person.name}</td>
+            <td>{formatTime(person.time)}</td>
+          </tr>
+        );
+      })
+    ) : (
+      <tr>
+        <td>No data</td>
+        <td>No data</td>
+      </tr>
+    );
 
   return (
     <div className="leaderboard">
@@ -44,7 +44,7 @@ export default function LeaderBoard() {
         </>
       ) : (
         <>
-          <h1>Leaderboard on {capitalize(difficulty)}</h1>
+          <h1>Leaderboard top-10 on {capitalize(difficulty)}</h1>
           <table>
             <thead>
               <tr>
